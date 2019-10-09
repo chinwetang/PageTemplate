@@ -1,42 +1,49 @@
 package tang.chinwe.lib_page.lcee
 
-import android.view.View
 
-interface ILcee :ILceeShow{
+interface ILcee : ILceeShow {
 
-    var loadingView: View?
-    var contentView: View?
-    var emptyView: View?
-    var errorView: View?
+    var lceeShow: ILceeShow?
 
-    var showState: ShowState
+    /**
+     * 加载页
+     */
+    fun loadingLayout(): Int? = null
 
-    override fun showLoading() {
-        if (showState == ShowState.Loading)
-            return
-        showState = ShowState.Loading
-    }
+    /**
+     * 内容页
+     */
+    fun contentLayout(): Int? = null
 
-    override fun showErrorView() {
-        if (showState == ShowState.Error)
-            return
-        showState = ShowState.Error
+    /**
+     * 空数据页
+     */
+    fun emptyLayout(): Int? = null
+
+    /**
+     * 错误页
+     */
+    fun errorLayout(): Int? = null
+
+    override fun showContent() {
+        super.showContent()
+        lceeShow?.showContent()
     }
 
     override fun showEmpty() {
-        if (showState == ShowState.Empty)
-            return
-        showState = ShowState.Empty
+        super.showEmpty()
+        lceeShow?.showEmpty()
     }
 
-    override fun showContent() {
-        if (showState == ShowState.Content)
-            return
-        showState = ShowState.Content
+    override fun showErrorView() {
+        super.showErrorView()
+        lceeShow?.showErrorView()
     }
 
+    override fun showLoading() {
+        super.showLoading()
+        lceeShow?.showLoading()
+    }
 }
 
-enum class ShowState {
-    Loading, Content, Error, Empty;
-}
+

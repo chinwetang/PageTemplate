@@ -14,10 +14,10 @@ import tang.chinwe.lib_page.R
  */
 object ImmersionManager : IInitImmersionBar {
 
-    private const val EXTRA_INIT_IMMERSION_BAR = "isInitImmersionBar"
+    const val EXTRA_INIT_IMMERSION_BAR = "isInitImmersionBar"
 
     //默认状态栏的颜色
-    var defaultStatusBarColorResource = R.color.page_windowBackground
+    var defaultStatusBarColorResource = R.color.page_template_windowBackground
     //默认是不开启
     var defaultIsImmersion = false
     //默认的加载策略

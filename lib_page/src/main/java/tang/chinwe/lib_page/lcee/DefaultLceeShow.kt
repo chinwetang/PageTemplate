@@ -12,18 +12,18 @@ import tang.chinwe.lib_page.expand.visible
 /**
  * 默认策略
  */
-class DefaultLceeStrategy(
+class DefaultLceeShow(
     override var loadingView: View?,
     override var contentView: View?,
     override var emptyView: View?,
     override var errorView: View?,
-    override var showState: ShowState = ShowState.Content
-) : ILcee {
+    override var state: ShowState = ShowState.Content
+) : ILceeShow {
     init {
-        loadingView?.visible(showState == ShowState.Loading)
-        contentView?.visible(showState == ShowState.Content)
-        emptyView?.visible(showState == ShowState.Empty)
-        errorView?.visible(showState == ShowState.Error)
+        loadingView?.visible(state == ShowState.Loading)
+        contentView?.visible(state == ShowState.Content)
+        emptyView?.visible(state == ShowState.Empty)
+        errorView?.visible(state == ShowState.Error)
     }
 
     override fun showLoading() {
@@ -57,12 +57,13 @@ class DefaultLceeStrategy(
 
     private val duration by lazy {
         val resource = loadingView?.resources ?: contentView?.resources
-        return@lazy resource?.getInteger(R.integer.lce_content_view_show_animation_time)?.toLong() ?: 100L
+        return@lazy resource?.getInteger(R.integer.lce_content_view_show_animation_time)?.toLong()
+            ?: 100L
     }
 
     override fun showContent() {
         super.showContent()
-        if (showState == ShowState.Loading) {
+        if (state == ShowState.Loading && loadingView != null && contentView != null) {
             emptyView?.gone()
             errorView?.gone()
 

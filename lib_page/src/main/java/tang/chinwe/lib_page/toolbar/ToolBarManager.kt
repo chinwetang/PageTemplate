@@ -13,7 +13,7 @@ import tang.chinwe.lib_page.expand.gone
  */
 object ToolBarManager : IInitToolBar {
 
-    private const val EXTRA_INIT_TOOLBAR = "isInitToolBar"
+    const val EXTRA_INIT_TOOLBAR = "isInitToolBar"
 
     //默认不开启
     var defaultIsToolBar = false

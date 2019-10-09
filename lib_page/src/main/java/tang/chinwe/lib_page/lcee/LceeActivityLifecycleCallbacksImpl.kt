@@ -1,17 +1,16 @@
-package tang.chinwe.lib_page.toolbar
+package tang.chinwe.lib_page.lcee
 
 import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.v4.app.FragmentActivity
-import tang.chinwe.lib_page.lcee.LceeFragmentLifecycleCallbacksImpl
 import tang.chinwe.lib_page.lifecycle.DefaultActivityLifecycleCallbacks
 
 /**
  * [Activity]ToolBar统一配置
  */
-class ToolBarActivityLifecycleCallbacksImpl :
+class LceeActivityLifecycleCallbacksImpl :
     DefaultActivityLifecycleCallbacks {
 
     companion object {
@@ -24,7 +23,7 @@ class ToolBarActivityLifecycleCallbacksImpl :
                 /**
                  * 可能会用到toolBar，所以丢到队尾执行，确保initView完成
                  */
-                ToolBarManager.initToolBar(it as? IToolBar)
+                LceeManager.lceeInit(it as? ILcee)
             }
         }
         (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(

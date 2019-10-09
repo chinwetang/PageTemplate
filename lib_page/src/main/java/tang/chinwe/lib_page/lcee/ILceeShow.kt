@@ -1,12 +1,44 @@
 package tang.chinwe.lib_page.lcee
 
+import android.view.View
+
 interface ILceeShow {
 
-    fun showLoading()
+    var loadingView: View?
+    var contentView: View?
+    var emptyView: View?
+    var errorView: View?
 
-    fun showErrorView()
+    var state: ShowState
 
-    fun showEmpty()
+    fun showLoading() {
+        if (state == ShowState.Loading)
+            return
+        state = ShowState.Loading
+    }
 
-    fun showContent()
+    fun showErrorView() {
+        if (state == ShowState.Error)
+            return
+        state = ShowState.Error
+
+    }
+
+    fun showEmpty() {
+        if (state == ShowState.Loading)
+            return
+        state = ShowState.Loading
+
+    }
+
+    fun showContent() {
+        if (state == ShowState.Empty)
+            return
+        state = ShowState.Empty
+
+    }
+}
+
+enum class ShowState {
+    Loading, Content, Error, Empty;
 }

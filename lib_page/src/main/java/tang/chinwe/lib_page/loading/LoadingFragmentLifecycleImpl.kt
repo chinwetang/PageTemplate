@@ -13,4 +13,12 @@ class LoadingFragmentLifecycleImpl : FragmentManager.FragmentLifecycleCallbacks(
             LoadingManager.loadingInit(f, f.context)
         }
     }
+
+    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
+        if (f !is ILoad)
+            return
+        if ((f.activity as? ILoad)?.loading !== (f as? ILoad)?.loading) {
+            f.bmDismiss()
+        }
+    }
 }

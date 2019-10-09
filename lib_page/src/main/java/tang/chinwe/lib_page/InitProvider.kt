@@ -6,14 +6,17 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import tang.chinwe.lib_page.immersion.ImmersionActivityLifecycleCallbacksImpl
-import tang.chinwe.lib_page.toolbar.ToolBarActivityLifecycleCallbacksImpl
+import tang.chinwe.lib_page.loading.LoadingActivityLifecycleImpl
+import tang.chinwe.lib_page.lcee.LceeActivityLifecycleCallbacksImpl
 
 class InitProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         (context?.applicationContext as Application).apply {
-            registerActivityLifecycleCallbacks(ToolBarActivityLifecycleCallbacksImpl())
+            registerActivityLifecycleCallbacks(LceeActivityLifecycleCallbacksImpl())
             registerActivityLifecycleCallbacks(ImmersionActivityLifecycleCallbacksImpl())
+            registerActivityLifecycleCallbacks(LoadingActivityLifecycleImpl())
+            registerActivityLifecycleCallbacks(LceeActivityLifecycleCallbacksImpl())
         }
         return true
     }

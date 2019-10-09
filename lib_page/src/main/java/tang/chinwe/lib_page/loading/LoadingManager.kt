@@ -7,7 +7,7 @@ import tang.chinwe.lib_page.R
 
 object LoadingManager : IInitLoading {
 
-    private const val EXTRA_INIT_LOADING = "isInitLoading"
+    const val EXTRA_INIT_LOADING = "isInitLoading"
 
     //默认不开启
     var defaultIsLoading = false
