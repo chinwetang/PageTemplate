@@ -1,0 +1,81 @@
+<resources>
+
+    //字体
+    <dimen name="page_font_10sp">10sp</dimen>
+    <dimen name="page_font_11sp">11sp</dimen>
+    <dimen name="page_font_12sp">12sp</dimen>
+    <dimen name="page_font_13sp">13sp</dimen>
+    <dimen name="page_font_14sp">14sp</dimen>
+    <dimen name="page_font_16sp">16sp</dimen>
+    <dimen name="page_font_17sp">17sp</dimen>
+    <dimen name="page_font_18sp">18sp</dimen>
+    <dimen name="page_font_20sp">20sp</dimen>
+    <dimen name="page_font_24sp">24sp</dimen>
+    <dimen name="page_font_30sp">30sp</dimen>
+    <dimen name="page_font_32sp">32sp</dimen>
+    <dimen name="page_font_34sp">34sp</dimen>
+    <dimen name="page_font_36sp">36sp</dimen>
+    <dimen name="page_font_48sp">48sp</dimen>
+
+    //角度
+    <dimen name="page_radius_8dp">8dp</dimen>
+
+    //高
+    <dimen name="page_height_16dp">16dp</dimen>
+    <dimen name="page_height_44dp">44dp</dimen>
+    <dimen name="page_height_50dp">50dp</dimen>
+    <dimen name="page_height_70px">70px</dimen>
+    <dimen name="page_height_120px">120px</dimen>
+    <dimen name="page_height_160px">160px</dimen>
+    <dimen name="page_height_200px">200px</dimen>
+    <dimen name="page_height_240px">240px</dimen>
+    <dimen name="page_height_550px">550px</dimen>
+    <dimen name="page_height_830px">830px</dimen>
+    <dimen name="page_app_bar_height">92dp</dimen>
+
+    //宽
+    <dimen name="page_width_32dp">32dp</dimen>
+    <dimen name="page_width_70px">70px</dimen>
+    <dimen name="page_width_200px">200px</dimen>
+    <dimen name="page_width_240px">240px</dimen>
+    //padding
+    <dimen name="page_padding_20px">20px</dimen>
+
+    //paddingLeft
+    <dimen name="page_pad_left_8px">8px</dimen>
+    <dimen name="page_pad_left_15px">15px</dimen>
+
+    //paddingrighpage
+    <dimen name="page_pad_right_26px">26px</dimen>
+
+    //paddingtop
+    <dimen name="page_pad_top_15px">15px</dimen>
+
+    //paddingbottpage
+    <dimen name="page_pad_bottom_20px">20px</dimen>
+
+    //marginTop
+    <dimen name="page_mar_top_2dp">2dp</dimen>
+    <dimen name="page_mar_top_3dp">3dp</dimen>
+    <dimen name="page_mar_top_4dp">4dp</dimen>
+    <dimen name="page_mar_top_5dp">5dp</dimen>
+    <dimen name="page_mar_top_10px">10px</dimen>
+    <dimen name="page_mar_top_25px">25px</dimen>
+
+    //marginLeft
+    <dimen name="page_mar_left_minus_4dp">-4dp</dimen>
+    <dimen name="page_mar_left_15px">15dp</dimen>
+    <dimen name="page_mar_left_18px">18dp</dimen>
+    <dimen name="page_mar_left_30px">30dp</dimen>
+
+    //marginright
+    <dimen name="page_mar_right_15px">15px</dimen>
+    <dimen name="page_mar_right_30px">30px</dimen>
+
+
+    //marginBottopage
+    <dimen name="page_mar_bottom_8px">8px</dimen>
+    <dimen name="page_mar_bottom_15px">15px</dimen>
+    <dimen name="page_mar_bottom_16px">16px</dimen>
+
+</resources>

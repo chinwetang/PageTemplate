@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <item name="page_template_toolbar_layout" type="id" />
+    <item name="page_template_toolbar_title" type="id" />
+    <item name="page_template_toolbar_left" type="id" />
+    <item name="page_template_toolbar_right" type="id" />
+</resources>

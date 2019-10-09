@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <integer name="lce_error_view_show_animation_time" tools:ignore="ResourceName">500</integer>
+    <integer name="lce_content_view_show_animation_time" tools:ignore="ResourceName">500</integer>
+</resources>

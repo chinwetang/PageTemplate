@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="page_template_windowBackground">#f6f6f6</color>
+    <color name="page_template_white">#ffffff</color>
+</resources>
