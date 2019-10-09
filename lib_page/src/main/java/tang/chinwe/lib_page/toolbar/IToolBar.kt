@@ -3,7 +3,7 @@ package tang.chinwe.lib_page.toolbar
 import android.view.View
 
 /**
- * ToolBar配置类
+ * ToolBar的具体属性抽象
  */
 interface IToolBar {
     fun leftText(): Int? = null

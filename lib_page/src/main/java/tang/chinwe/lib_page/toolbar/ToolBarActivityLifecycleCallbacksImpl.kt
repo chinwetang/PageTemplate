@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.v4.app.FragmentActivity
-import android.widget.Toolbar
 import tang.chinwe.lib_page.lifecycle.DefaultActivityLifecycleCallbacks
 
 /**
- * [Activity]沉浸式状态栏统一处理
+ * [Activity]ToolBar统一配置
  */
 class ToolBarActivityLifecycleCallbacksImpl :
     DefaultActivityLifecycleCallbacks {
