@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import android.view.ViewStub
 import tang.chinwe.lib_page.R
+import tang.chinwe.lib_page.utils.stubView
 
 object LceeManager : IInitLcee {
 
@@ -65,16 +66,7 @@ object LceeManager : IInitLcee {
         }
     }
 
-    internal fun stubView(rootView: View, id: Int?, layout: Int?): View? {
-        if (id == null || layout == null)
-            return null
-        val stub = rootView.findViewById<ViewStub>(id)
-        if (stub != null) {
-            stub.layoutResource = layout
-            return stub.inflate()
-        }
-        return null
-    }
+
 
 
     override fun lceeInit(lcee: ILcee?) {

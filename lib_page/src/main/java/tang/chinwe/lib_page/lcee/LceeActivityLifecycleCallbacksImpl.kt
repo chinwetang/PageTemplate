@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.support.v4.app.FragmentActivity
 import tang.chinwe.lib_page.lifecycle.DefaultActivityLifecycleCallbacks
+import tang.chinwe.lib_page.page.PageFragmentLifecycleCallbacksImpl
 
 /**
  * [Activity]ToolBar统一配置
@@ -27,7 +28,7 @@ class LceeActivityLifecycleCallbacksImpl :
             }
         }
         (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
-            LceeFragmentLifecycleCallbacksImpl(),
+            PageFragmentLifecycleCallbacksImpl(),
             true
         )
     }
