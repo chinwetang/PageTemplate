@@ -18,6 +18,6 @@ class PageFragmentLifecycleCallbacksImpl : FragmentManager.FragmentLifecycleCall
         f: Fragment,
         savedInstanceState: Bundle?
     ) {
-        PageManager.pageInit(f as? IPage<*, *>)
+        PageManager.pageInit(f as? IPage<IPageView, IPageCallBack<IPageView>>)
     }
 }

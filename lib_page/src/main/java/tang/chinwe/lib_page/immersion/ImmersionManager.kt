@@ -53,7 +53,7 @@ object ImmersionManager : IInitImmersionBar {
 
         //二级控制，Class控制
         if (activity is IIsInitImmersionBar) {
-            isImmersion = activity.immersionBar()
+            isImmersion = activity.isImmersionBar()
         }
 
         /**

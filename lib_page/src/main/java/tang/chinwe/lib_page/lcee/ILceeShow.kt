@@ -4,37 +4,37 @@ import android.view.View
 
 interface ILceeShow {
 
-    var loadingView: View?
-    var contentView: View?
-    var emptyView: View?
-    var errorView: View?
+    var pageLoadingView: View?
+    var pageContentView: View?
+    var pageEmptyView: View?
+    var pageErrorView: View?
 
-    var state: ShowState
+    var showState: ShowState?
 
     fun showLoading() {
-        if (state == ShowState.Loading)
+        if (showState == ShowState.Loading)
             return
-        state = ShowState.Loading
+        showState = ShowState.Loading
     }
 
     fun showErrorView() {
-        if (state == ShowState.Error)
+        if (showState == ShowState.Error)
             return
-        state = ShowState.Error
+        showState = ShowState.Error
 
     }
 
     fun showEmpty() {
-        if (state == ShowState.Loading)
+        if (showState == ShowState.Loading)
             return
-        state = ShowState.Loading
+        showState = ShowState.Loading
 
     }
 
     fun showContent() {
-        if (state == ShowState.Empty)
+        if (showState == ShowState.Empty)
             return
-        state = ShowState.Empty
+        showState = ShowState.Empty
 
     }
 }

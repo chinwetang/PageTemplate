@@ -1,13 +1,15 @@
 package tang.chinwe.lib_page.page
 
+import android.view.View
+
 /**
  * pageimpl开放给业务实现的接口
  */
 interface IPageCallBack<IP : IPageView> {
 
-    var page: IP?
+    val parentLayout: Int
 
-    fun createPage()
+    fun createPage(parentView:View):IP
 
     /**
      * 标题栏

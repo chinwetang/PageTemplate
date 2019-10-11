@@ -2,33 +2,33 @@ package tang.chinwe.lib_page.loading
 
 interface ILoading {
 
-    var state: LoadingState
+    var loadingState: LoadingState?
 
     /**
      * 显示加载
      */
     fun bmShow() {
-        check(state==LoadingState.Dismiss){
+        check(loadingState==LoadingState.Dismiss){
             "你不能show一个已经被dismiss的dialog"
         }
-        state = LoadingState.Show
+        loadingState = LoadingState.Show
     }
 
     /**
      * 隐藏
      */
     fun bmHide() {
-        check(state==LoadingState.Dismiss){
+        check(loadingState==LoadingState.Dismiss){
             "你不能hide一个已经被dismiss的dialog"
         }
-        state = LoadingState.Hide
+        loadingState = LoadingState.Hide
     }
 
     /**
      * 销毁
      */
     fun bmDismiss() {
-        state = LoadingState.Dismiss
+        loadingState = LoadingState.Dismiss
     }
 
     /**

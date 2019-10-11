@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item name="page_template_stub_head" type="id" />
+    <item name="page_template_stub_layout" type="id" />
+    <item name="page_template_stub_foot" type="id" />
+    <item name="page_template_stub_toolbar" type="id" />
+
+
     <item name="page_template_toolbar_layout" type="id" />
     <item name="page_template_toolbar_title" type="id" />
     <item name="page_template_toolbar_left" type="id" />
@@ -10,5 +18,8 @@
     <item name="page_template_stub_content" type="id" />
     <item name="page_template_stub_empty" type="id" />
     <item name="page_template_stub_error" type="id" />
+
+
+    <item name="page_template_stub_root" type="id" />
 
 </resources>

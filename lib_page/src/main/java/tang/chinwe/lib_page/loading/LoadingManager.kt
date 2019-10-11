@@ -22,15 +22,16 @@ object LoadingManager : IInitLoading {
             if (load.loading == null) {
                 val waitDialog = DefaultWaitingDialog(context)
                 waitDialog.setMessage(
-                    context.getString(
-                        load.loadMessage() ?: R.string.page_template_data_loading
-                    )
+                        context.getString(
+                                load.loadMessage() ?: R.string.page_template_data_loading
+                        )
                 )
                 waitDialog.setCancelable(load.cancelable() ?: false)
                 load.loadViewId()?.let {
                     waitDialog.setContentView(it)
                 }
                 load.loading = waitDialog
+                load.loadingState = load.loading?.loadingState
             }
         }
     }
@@ -42,7 +43,7 @@ object LoadingManager : IInitLoading {
         var isInitLoading = defaultIsLoading
         //二级控制，Class控制
         if (load is IIsInitLoading) {
-            isInitLoading = load.initLoading()
+            isInitLoading = load.isLoading()
         }
         /**
          * 三级控制，Object控制

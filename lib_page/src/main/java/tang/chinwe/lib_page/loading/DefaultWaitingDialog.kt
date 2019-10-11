@@ -12,7 +12,7 @@ import tang.chinwe.lib_page.R
 class DefaultWaitingDialog(context: Context) :
     Dialog(context, R.style.page_template_default_Dialog), ILoading {
 
-    override var state = LoadingState.DNS
+    override var loadingState:LoadingState? = LoadingState.DNS
 
     /**
      * 初始化界面与控件

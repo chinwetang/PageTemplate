@@ -11,7 +11,7 @@ import tang.chinwe.lib_page.lifecycle.DefaultActivityLifecycleCallbacks
  * [Activity]ToolBar统一配置
  */
 class PageActivityLifecycleCallbacksImpl :
-    DefaultActivityLifecycleCallbacks {
+        DefaultActivityLifecycleCallbacks {
 
     companion object {
         private val handler = Handler(Looper.getMainLooper())
@@ -19,12 +19,13 @@ class PageActivityLifecycleCallbacksImpl :
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         activity?.let {
-            PageManager.pageInit(it as? IPage<*, *>)
-
+            handler.post {
+                PageManager.pageInit(it as? IPage<IPageView, IPageCallBack<IPageView>>)
+            }
         }
         (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
-            PageFragmentLifecycleCallbacksImpl(),
-            true
+                PageFragmentLifecycleCallbacksImpl(),
+                true
         )
     }
 }

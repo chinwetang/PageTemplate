@@ -106,7 +106,7 @@ object ToolBarManager : IInitToolBar {
         var isInitToolBar = defaultIsToolBar
         //二级控制，Class控制
         if (toolBar is IIsInitToolBar) {
-            isInitToolBar = toolBar.initToolBar()
+            isInitToolBar = toolBar.isToolBar()
         }
         /**
          * 三级控制，Object控制

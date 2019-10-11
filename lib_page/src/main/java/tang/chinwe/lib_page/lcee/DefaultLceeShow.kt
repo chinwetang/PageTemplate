@@ -13,75 +13,75 @@ import tang.chinwe.lib_page.expand.visible
  * 默认策略
  */
 class DefaultLceeShow(
-    override var loadingView: View?,
-    override var contentView: View?,
-    override var emptyView: View?,
-    override var errorView: View?,
-    override var state: ShowState = ShowState.Content
+        override var pageLoadingView: View?,
+        override var pageContentView: View?,
+        override var pageEmptyView: View?,
+        override var pageErrorView: View?,
+        override var showState: ShowState? = ShowState.Content
 ) : ILceeShow {
     init {
-        loadingView?.visible(state == ShowState.Loading)
-        contentView?.visible(state == ShowState.Content)
-        emptyView?.visible(state == ShowState.Empty)
-        errorView?.visible(state == ShowState.Error)
+        pageLoadingView?.visible(showState == ShowState.Loading)
+        pageContentView?.visible(showState == ShowState.Content)
+        pageEmptyView?.visible(showState == ShowState.Empty)
+        pageErrorView?.visible(showState == ShowState.Error)
     }
 
     override fun showLoading() {
         super.showLoading()
-        loadingView?.visible()
-        contentView?.gone()
-        emptyView?.gone()
-        errorView?.gone()
+        pageLoadingView?.visible()
+        pageContentView?.gone()
+        pageEmptyView?.gone()
+        pageErrorView?.gone()
     }
 
     override fun showEmpty() {
         super.showEmpty()
-        loadingView?.gone()
-        contentView?.gone()
-        emptyView?.visible()
-        errorView?.gone()
+        pageLoadingView?.gone()
+        pageContentView?.gone()
+        pageEmptyView?.visible()
+        pageErrorView?.gone()
     }
 
     override fun showErrorView() {
         super.showErrorView()
-        loadingView?.gone()
-        contentView?.gone()
-        emptyView?.gone()
-        errorView?.visible()
+        pageLoadingView?.gone()
+        pageContentView?.gone()
+        pageEmptyView?.gone()
+        pageErrorView?.visible()
     }
 
     private val dp_50 by lazy {
-        val resource = loadingView?.resources ?: contentView?.resources
+        val resource = pageLoadingView?.resources ?: pageContentView?.resources
         return@lazy resource?.getDimension(R.dimen.page_height_50dp) ?: 100f
     }
 
     private val duration by lazy {
-        val resource = loadingView?.resources ?: contentView?.resources
+        val resource = pageLoadingView?.resources ?: pageContentView?.resources
         return@lazy resource?.getInteger(R.integer.lce_content_view_show_animation_time)?.toLong()
             ?: 100L
     }
 
     override fun showContent() {
         super.showContent()
-        if (state == ShowState.Loading && loadingView != null && contentView != null) {
-            emptyView?.gone()
-            errorView?.gone()
+        if (showState == ShowState.Loading && pageLoadingView != null && pageContentView != null) {
+            pageEmptyView?.gone()
+            pageErrorView?.gone()
 
             val set = AnimatorSet()
             val contentFadeIn = ObjectAnimator.ofFloat(
-                contentView,
+                pageContentView,
                 "alpha", 0f, 1f
             )
             val contentTranslateIn = ObjectAnimator.ofFloat(
-                contentView, "translationY", dp_50, 0f
+                pageContentView, "translationY", dp_50, 0f
             )
 
             val loadingFadeOut = ObjectAnimator.ofFloat(
-                loadingView,
+                pageLoadingView,
                 "alpha", 1f, 0f
             )
             val loadingTranslateOut = ObjectAnimator.ofFloat(
-                loadingView, "translationY", 0f, -dp_50
+                pageLoadingView, "translationY", 0f, -dp_50
             )
 
             set.playTogether(
@@ -93,25 +93,25 @@ class DefaultLceeShow(
             set.addListener(object : AnimatorListenerAdapter() {
 
                 override fun onAnimationStart(animation: Animator) {
-                    contentView?.translationY = 0f
-                    loadingView?.translationY = 0f
-                    contentView?.visible()
+                    pageContentView?.translationY = 0f
+                    pageLoadingView?.translationY = 0f
+                    pageContentView?.visible()
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
-                    loadingView?.gone()
-                    loadingView?.alpha = 1f
-                    contentView?.translationY = 0f
-                    loadingView?.translationY = 0f
+                    pageLoadingView?.gone()
+                    pageLoadingView?.alpha = 1f
+                    pageContentView?.translationY = 0f
+                    pageLoadingView?.translationY = 0f
                 }
             })
 
             set.start()
         } else {
-            loadingView?.gone()
-            contentView?.visible()
-            emptyView?.gone()
-            errorView?.gone()
+            pageLoadingView?.gone()
+            pageContentView?.visible()
+            pageEmptyView?.gone()
+            pageErrorView?.gone()
         }
     }
 }

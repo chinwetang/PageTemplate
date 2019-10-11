@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.view.View
-import android.view.ViewStub
 import tang.chinwe.lib_page.R
 import tang.chinwe.lib_page.utils.stubView
 
@@ -42,31 +41,34 @@ object LceeManager : IInitLcee {
             if (context == null || rootView == null)
                 return
             lcee.lceeShow = DefaultLceeShow(
-                stubView(
-                    rootView,
-                    R.id.page_template_stub_loading,
-                    lcee.loadingLayout() ?: defaultLoadingLayout
-                ),
-                stubView(
-                    rootView,
-                    R.id.page_template_stub_content,
-                    lcee.contentLayout() ?: defaultContentLayout
-                ),
-                stubView(
-                    rootView,
-                    R.id.page_template_stub_empty,
-                    lcee.emptyLayout() ?: defaultEmptyLayout
-                ),
-                stubView(
-                    rootView,
-                    R.id.page_template_stub_error,
-                    lcee.errorLayout() ?: defaultErrorLayout
-                )
+                    stubView(
+                            rootView,
+                            R.id.page_template_stub_loading,
+                            lcee.loadingLayout() ?: defaultLoadingLayout
+                    ),
+                    stubView(
+                            rootView,
+                            R.id.page_template_stub_content,
+                            lcee.contentLayout() ?: defaultContentLayout
+                    ),
+                    stubView(
+                            rootView,
+                            R.id.page_template_stub_empty,
+                            lcee.emptyLayout() ?: defaultEmptyLayout
+                    ),
+                    stubView(
+                            rootView,
+                            R.id.page_template_stub_error,
+                            lcee.errorLayout() ?: defaultErrorLayout
+                    )
             )
+            lcee.showState = lcee.lceeShow?.showState
+            lcee.pageLoadingView = lcee.lceeShow?.pageLoadingView
+            lcee.pageContentView = lcee.lceeShow?.pageContentView
+            lcee.pageEmptyView = lcee.lceeShow?.pageEmptyView
+            lcee.pageErrorView = lcee.lceeShow?.pageErrorView
         }
     }
-
-
 
 
     override fun lceeInit(lcee: ILcee?) {
@@ -76,7 +78,7 @@ object LceeManager : IInitLcee {
         var isInitLcee = defaultIsInitLcee
         //二级控制，Class控制
         if (lcee is IIsInitLcee) {
-            isInitLcee = lcee.initLcee()
+            isInitLcee = lcee.isLcee()
         }
         /**
          * 三级控制，Object控制

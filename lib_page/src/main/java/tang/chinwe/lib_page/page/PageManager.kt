@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.view.View
+import tang.chinwe.lib_page.R
 import tang.chinwe.lib_page.lcee.IIsInitPage
+import tang.chinwe.lib_page.utils.stubView
 
 /**
  * Page管理类
@@ -42,23 +44,37 @@ object PageManager : IInitPage {
             }
             if (context == null || rootView == null)
                 return
+
+
             val callBack = page.newPageCallBack().apply {
                 headLayout = headLayout ?: defaultHeadLayout
                 toolbarLayout = toolbarLayout ?: defaultToolBarLayout
                 footLayout = footLayout ?: defaultFootLayout
                 layout = layout ?: defaultLayout
-                createPage()
             }
-            page.page = callBack.page
+
+            val parentView = stubView(rootView, R.id.page_template_stub_root, callBack.parentLayout)
+                    ?: return
+            callBack.createPage(parentView).let {
+                page.page = it
+                page.apply {
+                    pageHeadView = it.pageHeadView
+                    pageFootView = it.pageFootView
+                    pageLayoutView = it.pageLayoutView
+                    pageToolBarView = it.pageToolBarView
+                }
+            }
         }
     }
 
     override fun <IP : IPageView, IPC : IPageCallBack<IP>> pageInit(page: IPage<IP, IPC>?) {
+        if (page == null)
+            return
         //一级控制，全局控制
         var isInitPage = defaultIsPage
         //二级控制，Class控制
         if (page is IIsInitPage) {
-            isInitPage = page.initPage()
+            isInitPage = page.isPage()
         }
         /**
          * 三级控制，Object控制
