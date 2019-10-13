@@ -11,6 +11,7 @@ interface IToolBar {
     fun leftIcon(): Int? = null
     fun rightIcon(): Int? = null
     fun titleText(): Int? = null
+    fun titleIcon(): Int? = null
     /**
      * 单位：像素
      */

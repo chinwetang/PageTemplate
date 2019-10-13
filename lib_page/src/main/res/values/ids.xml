@@ -7,6 +7,11 @@
     <item name="page_template_stub_foot" type="id" />
     <item name="page_template_stub_toolbar" type="id" />
 
+    <item name="page_template_stub_head_parent" type="id" />
+    <item name="page_template_stub_layout_parent" type="id" />
+    <item name="page_template_stub_foot_parent" type="id" />
+    <item name="page_template_stub_toolbar_parent" type="id" />
+
 
     <item name="page_template_toolbar_layout" type="id" />
     <item name="page_template_toolbar_title" type="id" />
@@ -20,6 +25,13 @@
     <item name="page_template_stub_error" type="id" />
 
 
+    <item name="page_template_stub_loading_parent" type="id" />
+    <item name="page_template_stub_content_parent" type="id" />
+    <item name="page_template_stub_empty_parent" type="id" />
+    <item name="page_template_stub_error_parent" type="id" />
+
+
     <item name="page_template_stub_root" type="id" />
+    <item name="page_template_stub_root_parent" type="id" />
 
 </resources>

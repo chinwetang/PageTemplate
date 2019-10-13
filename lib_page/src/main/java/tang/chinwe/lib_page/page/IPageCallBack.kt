@@ -9,26 +9,8 @@ interface IPageCallBack<IP : IPageView> {
 
     val parentLayout: Int
 
-    fun createPage(parentView:View):IP
+    fun initLayout(defaultToolBarLayout:Int?,defaultHeadLayout:Int?,defaultLayout:Int?,defaultFootLayout:Int?)
 
-    /**
-     * 标题栏
-     */
-    var toolbarLayout: Int?
+    fun initPage(parentView:View,pageView:IPageView?):IP
 
-    /**
-     * 头部
-     */
-    var headLayout: Int?
-
-
-    /**
-     * 主体
-     */
-    var layout: Int?
-
-    /**
-     * 尾部
-     */
-    var footLayout: Int?
 }

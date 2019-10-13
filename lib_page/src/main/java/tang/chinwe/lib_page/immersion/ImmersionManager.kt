@@ -22,7 +22,9 @@ object ImmersionManager : IInitImmersionBar {
     var defaultIsImmersion = false
     //默认的加载策略
     var defaultInitImmersionBar = object : IInitImmersionBar {
-        override fun initImmersionBar(activity: Activity) {
+        override fun initImmersionBar(activity: Activity?) {
+            if(activity==null)
+                return
             if (!Platform.DEPENDENCY_IMMERSION_BAR)
                 return
 
@@ -32,22 +34,24 @@ object ImmersionManager : IInitImmersionBar {
                 }?.let {
                     ImmersionBar.with(activity).titleBar(it, true).init()
                 } ?: ImmersionBar.with(activity).fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
-                    .autoStatusBarDarkModeEnable(true, 0.2f) //自动状态栏字体变色，必须指定状态栏颜色才可以自动变色哦
-                    .apply {
-                        //一级控制，全局
-                        var color = defaultStatusBarColorResource
-                        (activity as? IImmersionBar)?.statusBarColorResource()?.let {
-                            //二级控制，class
-                            color = it
-                        }
-                        statusBarColor(color)
-                    }.init()
+                        .autoStatusBarDarkModeEnable(true, 0.2f) //自动状态栏字体变色，必须指定状态栏颜色才可以自动变色哦
+                        .apply {
+                            //一级控制，全局
+                            var color = defaultStatusBarColorResource
+                            (activity as? IImmersionBar)?.statusBarColorResource()?.let {
+                                //二级控制，class
+                                color = it
+                            }
+                            statusBarColor(color)
+                        }.init()
             }
         }
 
     }
 
-    override fun initImmersionBar(activity: Activity) {
+    override fun initImmersionBar(activity: Activity?) {
+        if (activity == null)
+            return
         //一级控制，全局控制
         var isImmersion = defaultIsImmersion
 
@@ -60,7 +64,7 @@ object ImmersionManager : IInitImmersionBar {
          * 三级控制，Object控制
          * 如果含有[EXTRA_INIT_IMMERSION_BAR]
          */
-        isImmersion=activity.intent.getBooleanExtra(EXTRA_INIT_IMMERSION_BAR, isImmersion)
+        isImmersion = activity.intent.getBooleanExtra(EXTRA_INIT_IMMERSION_BAR, isImmersion)
 
         if (isImmersion) {
             if (activity is IInitImmersionBar) {

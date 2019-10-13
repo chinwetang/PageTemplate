@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib_page" />
+            <option value="$PROJECT_DIR$/lib_recycler_page" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

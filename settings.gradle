@@ -1,2 +1,1 @@
-include ':app', ':lib_page'
-rootProject.name='PageTemplate'
+include ':app', ':lib_page', ':lib_recycler_page'

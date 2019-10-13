@@ -3,7 +3,7 @@ package tang.chinwe.lib_page.page.page_default
 import android.view.View
 import tang.chinwe.lib_page.page.IPageView
 
-class DefaultPageImpl : IPageView {
+open class DefaultPageImpl : IDefaultPageView {
 
     override var pageToolBarView: View? = null
 

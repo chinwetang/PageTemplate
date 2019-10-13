@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<com.scwang.smartrefresh.header.MaterialHeader-->
+        <!--android:id="@+id/refresh_head"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--大哥说留一个下拉刷新时会跟着下滑，但是上划时不会滑出屏幕的头部-->
+        <ViewStub
+            android:id="@+id/page_recycler_refresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--重写的话，只需要改变这个布局，id必须使用这个包起来-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/page_recycler_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!--<com.scwang.smartrefresh.layout.footer.ClassicsFooter-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:srlClassicsSpinnerStyle="Translate" />-->
+
+</merge>

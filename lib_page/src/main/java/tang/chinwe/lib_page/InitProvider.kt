@@ -5,32 +5,23 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import tang.chinwe.lib_page.immersion.ImmersionActivityLifecycleCallbacksImpl
-import tang.chinwe.lib_page.lcee.LceeActivityLifecycleCallbacksImpl
-import tang.chinwe.lib_page.loading.LoadingActivityLifecycleImpl
-import tang.chinwe.lib_page.page.PageActivityLifecycleCallbacksImpl
-import tang.chinwe.lib_page.toolbar.ToolBarActivityLifecycleCallbacksImpl
 
 class InitProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         (context?.applicationContext as Application).apply {
-            registerActivityLifecycleCallbacks(PageActivityLifecycleCallbacksImpl())
-            registerActivityLifecycleCallbacks(LoadingActivityLifecycleImpl())
-            registerActivityLifecycleCallbacks(LceeActivityLifecycleCallbacksImpl())
-            registerActivityLifecycleCallbacks(ToolBarActivityLifecycleCallbacksImpl())
-            registerActivityLifecycleCallbacks(ImmersionActivityLifecycleCallbacksImpl())
+            registerActivityLifecycleCallbacks(PageTemplateActivityLifecycleCallbacksImpl())
         }
         return true
     }
 
 
     override fun query(
-        uri: Uri,
-        projection: Array<String>?,
-        selection: String?,
-        selectionArgs: Array<String>?,
-        sortOrder: String?
+            uri: Uri,
+            projection: Array<String>?,
+            selection: String?,
+            selectionArgs: Array<String>?,
+            sortOrder: String?
     ): Cursor? {
         return null
     }
@@ -48,10 +39,10 @@ class InitProvider : ContentProvider() {
     }
 
     override fun update(
-        uri: Uri,
-        values: ContentValues?,
-        selection: String?,
-        selectionArgs: Array<String>?
+            uri: Uri,
+            values: ContentValues?,
+            selection: String?,
+            selectionArgs: Array<String>?
     ): Int {
         return 0
     }

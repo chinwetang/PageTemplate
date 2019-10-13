@@ -15,12 +15,15 @@ object PageManager : IInitPage {
 
     const val EXTRA_INIT_PAGE = "isInitPage"
 
-    var defaultLayout: Int? = null
+
+    var defaultBgColor: Int? = null
+
+    var defaultLayout: Int? = R.layout.page_template_lcee_layout
     var defaultHeadLayout: Int? = null
     var defaultToolBarLayout: Int? = null
     var defaultFootLayout: Int? = null
 
-    var defaultIsPage = false
+    var defaultIsPage = true
 
     var defaultInitPage = object : IInitPage {
 
@@ -47,23 +50,16 @@ object PageManager : IInitPage {
 
 
             val callBack = page.newPageCallBack().apply {
-                headLayout = headLayout ?: defaultHeadLayout
-                toolbarLayout = toolbarLayout ?: defaultToolBarLayout
-                footLayout = footLayout ?: defaultFootLayout
-                layout = layout ?: defaultLayout
+                initLayout(defaultToolBarLayout, defaultHeadLayout, defaultLayout, defaultFootLayout)
             }
-
             val parentView = stubView(rootView, R.id.page_template_stub_root, callBack.parentLayout)
                     ?: return
-            callBack.createPage(parentView).let {
-                page.page = it
-                page.apply {
-                    pageHeadView = it.pageHeadView
-                    pageFootView = it.pageFootView
-                    pageLayoutView = it.pageLayoutView
-                    pageToolBarView = it.pageToolBarView
-                }
+
+            (page.bgColor() ?: defaultBgColor)?.let {
+                parentView.setBackgroundColor(context.resources.getColor(it))
             }
+
+            page.page = callBack.initPage(parentView, page)
         }
     }
 

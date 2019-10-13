@@ -11,16 +11,13 @@ import tang.chinwe.lib_page.loading.ILoading
 import tang.chinwe.lib_page.loading.LoadingState
 import tang.chinwe.lib_page.page.IPageCallBack
 import tang.chinwe.lib_page.page.IPageView
+import tang.chinwe.lib_page.page.IRootLayout
 
 abstract class PageFragmentActivity<IP : IPageView, IPC : IPageCallBack<IP>> : FragmentActivity(), IPageActivity<IP, IPC> {
     /**
      * Page相关
      */
     override var page: IP? = null
-    override var pageToolBarView: View? = null
-    override var pageLayoutView: View? = null
-    override var pageHeadView: View? = null
-    override var pageFootView: View? = null
     /**
      * Lcee相关
      */
@@ -41,13 +38,9 @@ abstract class PageFragmentActivity<IP : IPageView, IPC : IPageCallBack<IP>> : F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(rootLayout())
-        onCreatePage()
     }
 
     override fun rootLayout() = R.layout.page_template_root
 
-    companion object{
-
-    }
-
+    companion object
 }

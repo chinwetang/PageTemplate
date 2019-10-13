@@ -7,6 +7,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import com.gyf.immersionbar.ImmersionBar
+import tang.chinwe.lib_page.Platform
 import tang.chinwe.lib_page.R
 
 class DefaultWaitingDialog(context: Context) :
@@ -19,7 +20,7 @@ class DefaultWaitingDialog(context: Context) :
      */
     init {
         //设置Windows沉浸式
-        if (context is Activity) {
+        if (context is Activity && Platform.DEPENDENCY_IMMERSION_BAR) {
             ImmersionBar.with(context as Activity, this).init()
         }
 

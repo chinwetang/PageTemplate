@@ -17,7 +17,7 @@ object LceeManager : IInitLcee {
     var defaultErrorLayout: Int? = null
 
     //默认不开启
-    var defaultIsInitLcee = false
+    var defaultIsInitLcee = true
 
     var defaultInitLcee = object : IInitLcee {
         override fun lceeInit(lcee: ILcee?) {

@@ -16,13 +16,13 @@ object ToolBarManager : IInitToolBar {
     const val EXTRA_INIT_TOOLBAR = "isInitToolBar"
 
     //默认不开启
-    var defaultIsToolBar = false
+    var defaultIsToolBar = true
 
     //默认返回键icon
-    var defaultBackIcon = R.mipmap.page_template_default_back_icon
+    var defaultBackIcon: Int? = null
 
     //默认DrawablePadding
-    var defaultDrawablePadding = 4
+    var defaultDrawablePadding: Int? = null
 
     var defaultInitToolBar = object : IInitToolBar {
         override fun initToolBar(toolBar: IToolBar?) {
@@ -52,7 +52,7 @@ object ToolBarManager : IInitToolBar {
             val leftTextView = rootView.findViewById<TextView>(R.id.page_template_toolbar_left)
             val rightTextView = rootView.findViewById<TextView>(R.id.page_template_toolbar_right)
             val titleTextView = rootView.findViewById<TextView>(R.id.page_template_toolbar_title)
-            if (toolBar.hideToolBar() || layout != null) {
+            if (toolBar.hideToolBar() && layout != null) {
                 layout.gone()
                 return
             }
@@ -61,6 +61,13 @@ object ToolBarManager : IInitToolBar {
                     setText(it)
                 } ?: defaultTitle?.let {
                     text = it
+                }
+                toolBar.titleIcon()?.let {
+                    compoundDrawablePadding = toolBar.drawablePadding() ?: defaultDrawablePadding
+                            ?: compoundDrawablePadding
+                    setCompoundDrawables(context.resources.getDrawable(it).apply {
+                        setBounds(0, 0, minimumWidth, minimumHeight)
+                    }, null, null, null)
                 }
             }
             leftTextView?.apply {
@@ -80,9 +87,23 @@ object ToolBarManager : IInitToolBar {
                     }
                 }?.let {
                     compoundDrawablePadding = toolBar.drawablePadding() ?: defaultDrawablePadding
+                            ?: compoundDrawablePadding
                     setCompoundDrawables(context.resources.getDrawable(it).apply {
                         setBounds(0, 0, minimumWidth, minimumHeight)
                     }, null, null, null)
+                }
+                //设置默认的返回事件
+                setOnClickListener {
+                    if (!toolBar.onClickLeft(it)) {
+                        when (toolBar) {
+                            is Activity -> {
+                                toolBar.onBackPressed()
+                            }
+                            is Fragment -> {
+                                toolBar.activity?.onBackPressed()
+                            }
+                        }
+                    }
                 }
             }
             rightTextView?.apply {
@@ -91,6 +112,7 @@ object ToolBarManager : IInitToolBar {
                 }
                 toolBar.rightIcon()?.let {
                     compoundDrawablePadding = toolBar.drawablePadding() ?: defaultDrawablePadding
+                            ?: compoundDrawablePadding
                     setCompoundDrawables(context.resources.getDrawable(it).apply {
                         setBounds(0, 0, minimumWidth, minimumHeight)
                     }, null, null, null)
@@ -102,6 +124,8 @@ object ToolBarManager : IInitToolBar {
 
 
     override fun initToolBar(toolBar: IToolBar?) {
+        if (toolBar == null)
+            return
         //一级控制，全局控制
         var isInitToolBar = defaultIsToolBar
         //二级控制，Class控制

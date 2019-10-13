@@ -1,6 +1,7 @@
 package tang.chinwe.lib_page.loading
 
 import android.app.Activity
+import android.arch.lifecycle.LifecycleOwner
 import android.content.Context
 import android.support.v4.app.Fragment
 import tang.chinwe.lib_page.R
@@ -10,7 +11,7 @@ object LoadingManager : IInitLoading {
     const val EXTRA_INIT_LOADING = "isInitLoading"
 
     //默认不开启
-    var defaultIsLoading = false
+    var defaultIsLoading = true
 
     var defaultInitLoading = object : IInitLoading {
         override fun loadingInit(load: ILoad?, context: Context?) {
@@ -36,7 +37,23 @@ object LoadingManager : IInitLoading {
         }
     }
 
-    override fun loadingInit(load: ILoad?, context: Context?) {
+    override fun loadingInit(owner: LifecycleOwner?) {
+        if (owner == null)
+            return
+        val load: ILoad? = owner as? ILoad
+        val context: Context? =
+                when (owner) {
+                    is Activity -> {
+                        owner
+                    }
+                    is Fragment -> {
+                        owner.context
+                    }
+                    else -> {
+                        null
+                    }
+                }
+
         if (load == null || context == null || context !is Activity || load.loading != null)
             return
         //一级控制，全局控制
